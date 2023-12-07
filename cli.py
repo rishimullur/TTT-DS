@@ -11,7 +11,7 @@ class TicTacToeCLI:
         player2_name = input("Enter Player 2 name (or 'bot' for AI): ")
 
         log_file = 'logs/tictactoe_game_log.csv'
-        fieldnames = ['Game Time', 'Player 1 Name', 'Player 2 Name', 'Draw', 'Winner']
+        fieldnames = ['Game Time', 'Player 1 Name', 'Player 2 Name', 'Draw', 'Winner','Player 1 Move']
         #Only run this once, to set header
         # with open(log_file, 'w', newline='') as csvfile:
         #     csv_writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -21,6 +21,9 @@ class TicTacToeCLI:
         start_time = datetime.now()
         winner = None
         char = 'X'
+        firstMove = []
+        firstMoveCount = 0
+        isFirstMoverWon = False
         # logging.basicConfig(filename='logs/game.log', format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', encoding='utf-8', level=logging.DEBUG)
         # logging.info('New Game begin')
         game_type = logic.select_game_type()
@@ -30,6 +33,7 @@ class TicTacToeCLI:
             logging.info("Turn Begins")
             print("Begin Turn!")
             print("It's", char, "turn!")
+
 
             # Log player names
             player = player1_name if char == 'X' else player2_name
@@ -42,6 +46,10 @@ class TicTacToeCLI:
                 print("Enter the row and column of the board you want to add the move to:")
                 i = int(input("Enter the row number (Options- 1 | 2 | 3):"))
                 j = int(input("Enter the column (Options- 1 | 2 | 3):"))
+                if firstMoveCount == 0:
+                    firstMove.append(i)
+                    firstMove.append(j)
+                firstMoveCount = firstMoveCount + 1
 
                 board, is_illegal = self.logic.make_move(board=board, i=i, j=j)
                 # if an illegal move happens, do not change the turn
@@ -65,11 +73,15 @@ class TicTacToeCLI:
                 elif winner == 'O' and game_type == 1:
                     player_winner = 'Bot'
 
+                if player_winner == player1_name:
+                    isFirstMoverWon = True
+                elif player_winner == player2_name:
+                     isFirstMoverWon = False
 
                 with open(log_file, 'a', newline='') as csvfile:
                     csv_writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                     csv_writer.writerow({'Game Time': game_time, 'Player 1 Name': player1_name, 'Player 2 Name': player2_name,
-                                        'Draw': winner == 'Draw', 'Winner': player_winner})
+                                        'Draw': winner == 'Draw', 'Winner': player_winner, 'Player 1 Move':firstMove,'is_first_player_win':isFirstMoverWon})
 
             print("Winner",winner)
             if winner == 'Draw':
@@ -81,4 +93,5 @@ if __name__ == '__main__':
     logic = TicTacToeLogic()
     cli = TicTacToeCLI(logic)
     cli.play_game()
+
 
