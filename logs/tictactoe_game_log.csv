@@ -1,12 +1,12 @@
 Game Time,Player 1 Name,Player 2 Name,Draw,Winner
-20.830468,rishi,cat,False,rishi
-5.797944,rishi,bot,False,rishi
-28.854704,rishi,bot,True,rishi
-28.684253,rishi,bot,True,rishi
-19.720247,rishi,bot,False,Bot
-6.407586,1,bot,False,1
-13.690687,rishi,cat,False,cat
-22.995077,rishi,cat,False,cat
-14.824306,rishi,cat,False,cat
-14.084973,rishi,cat,False,cat
-11.238706,rishi,cat,False,cat
+20.830468,rishi,cat,False,rishi,"[1, 2]",False
+5.797944,rishi,bot,False,rishi,"[2, 3]",True
+28.854704,rishi,bot,True,rishi,"[1, 1]",True
+28.684253,rishi,bot,True,rishi,"[3, 2]",True
+19.720247,rishi,bot,False,Bot,"[2, 1]",True
+13.690687,rishi,cat,False,cat,"[1, 1]",False
+22.995077,rishi,cat,False,cat,"[2, 1]",False
+14.824306,rishi,cat,False,cat,"[1, 3]",False
+14.084973,rishi,cat,False,cat,"[3, 1]",True
+11.238706,rishi,cat,False,cat,"[1, 1]",True
+5.531441,rishi,bot,False,rishi,"[1, 1]",True

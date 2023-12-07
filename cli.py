@@ -11,7 +11,7 @@ class TicTacToeCLI:
         player2_name = input("Enter Player 2 name (or 'bot' for AI): ")
 
         log_file = 'logs/tictactoe_game_log.csv'
-        fieldnames = ['Game Time', 'Player 1 Name', 'Player 2 Name', 'Draw', 'Winner','Player 1 Move']
+        fieldnames = ['Game Time', 'Player 1 Name', 'Player 2 Name', 'Draw', 'Winner','Player 1 Move','is_first_player_win']
         #Only run this once, to set header
         # with open(log_file, 'w', newline='') as csvfile:
         #     csv_writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
